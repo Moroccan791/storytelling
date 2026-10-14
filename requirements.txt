@@ -1,0 +1,4 @@
+imageio-ffmpeg==0.6.0
+pillow==12.3.0
+numpy==2.4.6
+moonshine-cpp==0.1.4

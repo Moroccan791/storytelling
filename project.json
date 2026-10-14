@@ -1,0 +1,91 @@
+{
+  "title": "The Last Call",
+  "format": "1080x1920, 30 fps",
+  "duration_seconds": 53,
+  "narration_language": "en",
+  "voice": "voice-00",
+  "shots": [
+    [
+      0,
+      3.05,
+      "01-call",
+      1.0,
+      1.05
+    ],
+    [
+      3.05,
+      10.7,
+      "01-call",
+      1.14,
+      1.22
+    ],
+    [
+      10.7,
+      12.7,
+      "02-phone",
+      1.0,
+      1.07
+    ],
+    [
+      12.7,
+      14.7,
+      "01-call",
+      1.22,
+      1.18
+    ],
+    [
+      14.7,
+      21.0,
+      "03-recording",
+      1.0,
+      1.06
+    ],
+    [
+      21.0,
+      26.7,
+      "03-recording",
+      1.12,
+      1.18
+    ],
+    [
+      26.7,
+      32.7,
+      "01-call",
+      1.1,
+      1.04
+    ],
+    [
+      32.7,
+      39.3,
+      "04-door",
+      1.0,
+      1.08
+    ],
+    [
+      39.3,
+      42.6,
+      "05-table",
+      1.0,
+      1.08
+    ],
+    [
+      42.6,
+      47.8,
+      "06-stay",
+      1.0,
+      1.05
+    ],
+    [
+      47.8,
+      53.0,
+      "06-stay",
+      1.1,
+      1.16
+    ]
+  ],
+  "caption_source": "tools/SOURCE.json",
+  "caption_timing_note": "Moonshine ASR + energy alignment, corrected to approved script. Approximate word timings.",
+  "music": "none",
+  "fiction": true,
+  "posting_metadata": "post.json"
+}
