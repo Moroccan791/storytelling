@@ -2,7 +2,9 @@
 from pathlib import Path
 import sys, json
 ROOT=Path(__file__).resolve().parent
-sys.path.insert(0,str(ROOT/'tools'))
+# Post files live in post1/; the shared clipper subset stays at the repo root.
+TOOLS=ROOT/'tools' if (ROOT/'tools').is_dir() else ROOT.parent/'tools'
+sys.path.insert(0,str(TOOLS))
 from clipper.ffmpeg import decode_audio
 from clipper.asr.moonshine import MoonshineProvider
 

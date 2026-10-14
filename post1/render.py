@@ -6,7 +6,9 @@ import concurrent.futures, difflib, json, re, subprocess, sys
 import imageio_ffmpeg
 from PIL import Image, ImageOps
 ROOT=Path(__file__).resolve().parent
-sys.path.insert(0,str(ROOT/'tools'))
+# Post files live in post1/; the shared clipper subset stays at the repo root.
+TOOLS=ROOT/'tools' if (ROOT/'tools').is_dir() else ROOT.parent/'tools'
+sys.path.insert(0,str(TOOLS))
 from clipper.asr.base import Word
 from clipper.captions.ass import write_ass
 from clipper.captions.cues import group_words
@@ -90,6 +92,9 @@ def shot_render(item):
  run(['-threads','2','-i',str(src),'-vf',vf,'-frames:v',str(n),'-an','-c:v','libx264','-threads','2','-preset','fast','-crf','20','-pix_fmt','yuv420p',str(dest)])
  print(f'Shot {i+1}/{len(shots)} rendered',flush=True)
  return dest
+
+if not (ROOT/'images').is_dir():
+ raise SystemExit('Missing images/ - restore the six scene illustrations before re-rendering.')
 
 # Prepare source crops serially to avoid simultaneous writes to reused images.
 for name in {s[2] for s in shots}:
