@@ -12,6 +12,7 @@ Standalone storytelling shorts. Each post lives in its own numbered folder with 
 
 ```
 tools/                       shared, read-only caption pipeline (vendored, pinned)
+motion/                      CPU motion renderer for animating stills
 post1/
 ├── README.md                project notes for this post
 ├── the-last-call.mp4        final cut (H.264 + AAC, 1080×1920, 30 fps)
@@ -36,6 +37,10 @@ post1/
 The caption pipeline (`tools/clipper/` plus the Montserrat fonts in `tools/assets/fonts/`) is a read-only subset copied from `Moroccan791/system`, branch `arena/14b1cc76-system`. It is shared across posts and vendored at the repository root, pinned by SHA-256 in `tools/SOURCE.json`. See [`tools/README.md`](tools/README.md).
 
 Fixes to it belong upstream in `Moroccan791/system`, not here — re-vendor from `tools/SOURCE.json` afterwards.
+
+## Animated shots
+
+`motion/` turns one illustration into a moving shot — eased camera, practical-light flicker, drifting dust, 2.5D parallax — on CPU, no GPU or paid model. It moves the camera and the light only; it cannot invent artwork or animate a character. See [`motion/README.md`](motion/README.md) for the comparison video and the limits.
 
 ## Watching a post locally
 
