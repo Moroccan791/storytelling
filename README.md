@@ -11,6 +11,7 @@ Standalone storytelling shorts. Each post lives in its own numbered folder with 
 ## Structure
 
 ```
+tools/                       shared, read-only caption pipeline (vendored, pinned)
 post1/
 ├── README.md                project notes for this post
 ├── the-last-call.mp4        final cut (H.264 + AAC, 1080×1920, 30 fps)
@@ -32,7 +33,9 @@ post1/
 
 ## Shared tooling
 
-The caption pipeline (`tools/clipper/`) is a read-only local subset copied from `Moroccan791/system`. It is shared across posts and lives at the repository root, pinned in `tools/SOURCE.json`. It is **not** currently present in this repository — see "Known gaps" in [`post1/README.md`](post1/README.md).
+The caption pipeline (`tools/clipper/` plus the Montserrat fonts in `tools/assets/fonts/`) is a read-only subset copied from `Moroccan791/system`, branch `arena/14b1cc76-system`. It is shared across posts and vendored at the repository root, pinned by SHA-256 in `tools/SOURCE.json`. See [`tools/README.md`](tools/README.md).
+
+Fixes to it belong upstream in `Moroccan791/system`, not here — re-vendor from `tools/SOURCE.json` afterwards.
 
 ## Watching a post locally
 
