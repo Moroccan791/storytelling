@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Storytelling — animated episode</title>
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#0d0e10;color:#f6f2ea;font-family:system-ui,sans-serif;padding:40px 24px 72px}
+  .wrap{max-width:1180px;margin:0 auto}
+  small{color:#e6b877;letter-spacing:.18em;text-transform:uppercase;font-size:12px}
+  h1{font-size:40px;line-height:1.1;margin:14px 0 10px}
+  h2{font-size:19px;margin:46px 0 14px}
+  p{color:#a8a29a;line-height:1.75;max-width:72ch}
+  a{color:#e6b877}
+  video{display:block;width:100%;border-radius:14px;background:#000;box-shadow:0 18px 60px #0009}
+  .hero{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:40px;align-items:start;margin-top:8px}
+  .hero video{max-height:76vh;width:auto;max-width:100%;margin:0 auto}
+  .facts{background:#16181c;border-radius:12px;padding:22px 24px}
+  .facts h3{margin:0 0 14px;font-size:15px;color:#f6f2ea;letter-spacing:.04em}
+  .facts table{width:100%;border-collapse:collapse;font-size:14px}
+  .facts td{padding:8px 0;border-bottom:1px solid #23262b;color:#a8a29a}
+  .facts td:last-child{text-align:right;color:#e8e2d9}
+  .facts tr:last-child td{border-bottom:none}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .card video{height:520px;object-fit:contain;background:#000}
+  .card span{display:block;margin-top:10px;color:#8d867e;font-size:13px}
+  .note{background:#16181c;border-left:3px solid #e6b877;padding:16px 20px;border-radius:8px;margin-top:24px}
+  .note p{margin:0}
+  code{background:#1c1f24;padding:2px 6px;border-radius:4px;color:#e0d8cd;font-size:13px}
+  .stills{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
+  .stills img{width:100%;border-radius:8px;display:block}
+  @media(max-width:900px){.hero{grid-template-columns:1fr}.row{grid-template-columns:1fr}.card video{height:auto}h1{font-size:29px}.stills{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <small>Storytelling · animated cut</small>
+  <h1>The Last Call, with the camera actually moving</h1>
+  <p>Every shot here was moved by <code>motion/motion.py</code> on CPU — no GPU, no paid model, no new artwork. The stills are the same six illustrations; only the camera and the light move.</p>
+
+  <div class="hero">
+    <video src="post1/the-last-call-animated.mp4" controls playsinline preload="metadata" poster="post1/preview.jpg"></video>
+    <div>
+      <div class="facts">
+        <h3>Rendered on 2 CPU cores</h3>
+        <table>
+          <tr><td>Animate all six illustrations</td><td>3 min</td></tr>
+          <tr><td>Assemble the 53 s film</td><td>2 min 48 s</td></tr>
+          <tr><td>Full episode, start to finish</td><td>~6 min</td></tr>
+          <tr><td>GPU required</td><td>none</td></tr>
+          <tr><td>Money spent</td><td>$0</td></tr>
+          <tr><td>Output</td><td>1080×1920 · 30 fps · 53.00 s</td></tr>
+        </table>
+      </div>
+      <p style="margin-top:20px">Compare with the original still-based cut: <a href="post1/">The Last Call (still + zoom) →</a></p>
+    </div>
+  </div>
+
+  <div class="note">
+    <p><strong>The honest limit:</strong> this moves the camera and the light. Nothing inside the frame changes shape — no mouth moves, no head turns, no new angle. For that you need an image-to-video model, which the target i3 laptop cannot run locally. <a href="docs/ANIMATION.md">docs/ANIMATION.md</a> covers the free Colab route (LTX-Video, 6–8 min per clip) and what hosted models cost.</p>
+  </div>
+
+  <h2>The six source stills</h2>
+  <p>These were recovered from the finished film, since <code>post1/images/</code> was never committed. <code>motion/extract_stills.py</code> finds a caption-free frame for each illustration and pulls it — captions cover about two thirds of the runtime, so every illustration has a clean window.</p>
+  <div class="stills">
+    <img src="motion/src/01-call.png" alt="01-call">
+    <img src="motion/src/02-phone.png" alt="02-phone">
+    <img src="motion/src/03-recording.png" alt="03-recording">
+    <img src="motion/src/04-door.png" alt="04-door">
+    <img src="motion/src/05-table.png" alt="05-table">
+    <img src="motion/src/06-stay.png" alt="06-stay">
+  </div>
+
+  <h2>Motion styles</h2>
+  <div class="row">
+    <div class="card">
+      <video src="motion/example-living.mp4" controls playsinline preload="metadata"></video>
+      <span><strong>living</strong> — eased camera, lamp that breathes and flickers, dust in the light, grain</span>
+    </div>
+    <div class="card">
+      <video src="motion/example-parallax.mp4" controls playsinline preload="metadata"></video>
+      <span><strong>parallax</strong> — depth-displaced pixels so near things slide further, plus handheld drift</span>
+    </div>
+  </div>
+
+  <h2>Same frame, three ways</h2>
+  <video src="motion/COMPARE.mp4" controls playsinline preload="metadata"></video>
+
+  <h2>Bring your own clips</h2>
+  <p>Drop <code>&lt;name&gt;.mp4</code> into <code>post1/clips/</code> from any image-to-video model and run <code>python post1/render_video.py</code> — it trims, retimes or ping-pongs each clip onto the shot plan, burns in the same captions, and falls back to the still for any shot you have not generated. A paid close-up can sit next to free CPU motion.</p>
+</div>
+</body>
+</html>
