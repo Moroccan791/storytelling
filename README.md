@@ -11,6 +11,7 @@ Standalone storytelling shorts. Each post lives in its own numbered folder with 
 ## Structure
 
 ```
+pipeline/                    the on-demand video engine (two formats, one pipeline)
 tools/                       shared, read-only caption pipeline (vendored, pinned)
 motion/                      CPU motion renderer + recovered source stills
 docs/                        animation options, costs and limits
@@ -38,6 +39,24 @@ post1/
 The caption pipeline (`tools/clipper/` plus the Montserrat fonts in `tools/assets/fonts/`) is a read-only subset copied from `Moroccan791/system`, branch `arena/14b1cc76-system`. It is shared across posts and vendored at the repository root, pinned by SHA-256 in `tools/SOURCE.json`. See [`tools/README.md`](tools/README.md).
 
 Fixes to it belong upstream in `Moroccan791/system`, not here — re-vendor from `tools/SOURCE.json` afterwards.
+
+## On-demand videos (two formats)
+
+`pipeline/` builds two formats to the same output — 1080×1920, 30 fps, 25-45 s — with the pacing, captions, motion, sound and rule checks all enforced by code:
+
+| Format | Shape | Images |
+| --- | --- | --- |
+| **A — Story** | Hook, one twist, strong last line | 15-25 |
+| **B — Did you know / What if** | One true fact, or a step-by-step scenario ending on the surprise | 10-18 |
+
+Nothing renders until a format and a topic are chosen. Topics are scored for curiosity, visual potential and accuracy risk in [`pipeline/TOPICS.md`](pipeline/TOPICS.md) — 20 per format, with a tracker so nothing repeats. Format B facts need two named sources before they are built, and the sources ship with the video.
+
+```bash
+python pipeline/smoke_test.py                       # prove the engine, no API keys needed
+python pipeline/build.py --spec pipeline/specs/<id> # build one video
+```
+
+See [`pipeline/README.md`](pipeline/README.md) for what the rule checks enforce.
 
 ## Animated episodes
 

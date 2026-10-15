@@ -1,0 +1,68 @@
+{
+  "id": "example-topic",
+  "format": "whatif",
+  "title": "What if the Moon Disappeared?",
+  "series": "What If",
+  "hook": "Tonight, the Moon is 384,400 kilometres away. Now it isn't.",
+
+  "narration": {
+    "engine": "tts",
+    "voice": "voice-00",
+    "script": "One sentence per line. This is what gets spoken, and it is also what the captions are aligned to.",
+    "segments": [
+      { "file": "nar/01.wav", "text": "Tonight, the Moon is 384,400 kilometres away.", "pause_after": 0.35 },
+      { "file": "nar/02.wav", "text": "Now it isn't.", "pause_after": 0.6 }
+    ]
+  },
+
+  "key_words": ["Moon", "384,400", "isn't"],
+
+  "headline": {
+    "text": "WHAT IF THE MOON DISAPPEARED",
+    "start": 0.25,
+    "dur": 2.2,
+    "accent": ["MOON"],
+    "typing_db": -30.0
+  },
+
+  "music": { "mood": "facts", "db": -26.0, "duck_db": 9.0 },
+
+  "sfx": [
+    { "t": 1.8, "kind": "riser", "gain_db": -22.0 },
+    { "t": 6.4, "kind": "shimmer", "gain_db": -19.0 }
+  ],
+
+  "images": [
+    { "name": "01-wide",   "prompt": "Wide: the Moon over a sleeping city. Style: ..." },
+    { "name": "02-close",  "prompt": "Close: a face lit by moonlight. Style: ..." }
+  ],
+
+  "shots": [
+    { "image": "01-wide",  "dur": 2.6, "move": "in" },
+    { "image": "02-close", "dur": 3.0, "move": "left", "parallax": 16 },
+    { "image": "01-wide",  "dur": 2.4, "move": "right", "sfx": { "kind": "thud", "gain_db": -18.0 } }
+  ],
+
+  "loop_back": true,
+
+  "sources": [
+    {
+      "claim": "The Moon recedes from Earth by 3.8 cm a year",
+      "confidence": "high",
+      "note": "Measured by lunar laser ranging off Apollo retroreflectors.",
+      "urls": [
+        "https://science.nasa.gov/moon/",
+        "https://www.nasa.gov/..."
+      ]
+    }
+  ],
+
+  "report_note": "One or two sentences on what this video is and how it is built.",
+
+  "profile": {
+    "style": "photoreal cinematic, deep shadows, single warm practical light",
+    "captions": "Montserrat ExtraBold, accent #F5C879",
+    "format": "1080x1920, 30fps, 25-45s",
+    "palette": "near-black backgrounds, one warm highlight"
+  }
+}

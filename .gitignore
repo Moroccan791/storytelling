@@ -8,3 +8,9 @@ work/
 
 # Generated motion clips (regenerate with: python motion/build_clips.py)
 post1/clips/
+
+# Built videos and their work/ intermediates
+videos/
+
+# Self-test scratch (synthetic cards and audio)
+pipeline/_selftest/

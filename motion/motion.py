@@ -43,13 +43,17 @@ def keyframes(keys, p):
 
 def depth_proxy(gray):
     """Cheap depth: blurred luminance (bright = lit/near) + screen height
-    (low in frame = near). Good enough for small parallax displacements."""
-    lum = cv2.GaussianBlur(gray, (0, 0), 45)
+    (low in frame = near). Good enough for small parallax displacements.
+
+    Always returns float32: cv2.remap refuses a float64 array as a map, and a
+    uint8 input (a plain imread) would otherwise produce one.
+    """
+    lum = cv2.GaussianBlur(gray.astype(np.float32), (0, 0), 45)
     lum = (lum - lum.min()) / (np.ptp(lum) + 1e-6)
     yramp = np.linspace(1.0, 0.0, H, dtype=np.float32)[:, None]
     d = 0.35 * lum + 0.65 * yramp
-    d = cv2.GaussianBlur(d, (0, 0), 60)
-    return (d - d.min()) / (np.ptp(d) + 1e-6)
+    d = cv2.GaussianBlur(d.astype(np.float32), (0, 0), 60)
+    return ((d - d.min()) / (np.ptp(d) + 1e-6)).astype(np.float32)
 
 
 def glow_mask(center, sigma):
