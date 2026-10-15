@@ -1,0 +1,339 @@
+{
+  "repository": "Moroccan791/system",
+  "branch": "arena/14b1cc76-system",
+  "commit": "f0c5eed5367bf472e47c0aef7ba79052aa59bfee",
+  "commit_date": "2026-10-14T18:37:49Z",
+  "commit_subject": "Premium pass: drifting B-roll cutaways + clipper cover (covers in all post folders)",
+  "vendored_at": "2026-10-15",
+  "copied": [
+    "clipper/",
+    "assets/fonts/",
+    "assets/Montserrat-OFL.txt"
+  ],
+  "not_copied": [
+    "assets/broll/",
+    "assets/icons/",
+    "assets/models/",
+    "assets/sfx/"
+  ],
+  "usage": "Read-only. prepare.py and render.py put this directory on sys.path and import clipper.*; render.py passes assets/fonts to ffmpeg via fontsdir=.",
+  "external_requirements": {
+    "caption_and_render_path": [
+      "imageio-ffmpeg",
+      "numpy",
+      "pillow"
+    ],
+    "transcribe_path": [
+      "moonshine-cpp",
+      "onnxruntime",
+      "silero-vad"
+    ],
+    "unused_by_post1_but_imported_by_clipper": [
+      "opencv-python",
+      "faster-whisper"
+    ]
+  },
+  "file_count": 60,
+  "files": [
+    {
+      "path": "assets/Montserrat-OFL.txt",
+      "bytes": 4400,
+      "sha256": "8b7141c03fa4f8d44e6345d5d4931709290f0f67875e452e95ac1fd3a027802e"
+    },
+    {
+      "path": "assets/fonts/Montserrat-Bold.ttf",
+      "bytes": 454864,
+      "sha256": "bc6e854971cea46b463be6f9eef4d9cd52f51cfc1fc0dd90c9d3e6483dc0ec61"
+    },
+    {
+      "path": "assets/fonts/Montserrat-ExtraBold.ttf",
+      "bytes": 455468,
+      "sha256": "d3ac6a843d3ba6d5cafd44cf39e437055c8aed7e261010f595f57d3c7b3e2c1b"
+    },
+    {
+      "path": "assets/fonts/Montserrat-Regular.ttf",
+      "bytes": 445928,
+      "sha256": "3e8abe50c44c82e2242e97d1ec8c0d385c4890cdc50447bcdb8605c81a38cfb2"
+    },
+    {
+      "path": "assets/fonts/Montserrat-SemiBold.ttf",
+      "bytes": 454716,
+      "sha256": "b4e1563393d73fdff491a869441245aef31add2ec03d9c97a6dae4de07c52fd0"
+    },
+    {
+      "path": "clipper/__init__.py",
+      "bytes": 610,
+      "sha256": "42a7b89486ee0211dc87ff253990ed40bc985c4887a1509f66e939a0cc69a555"
+    },
+    {
+      "path": "clipper/__main__.py",
+      "bytes": 79,
+      "sha256": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7"
+    },
+    {
+      "path": "clipper/align/__init__.py",
+      "bytes": 790,
+      "sha256": "7ff8e87f526d08d2dd5482584ca15fc801e2e4d42a7ea9dc999006feb986f6ce"
+    },
+    {
+      "path": "clipper/align/energy_align.py",
+      "bytes": 8127,
+      "sha256": "8ad77d3b7e94c51c284206a0d52653d0f4a2fa1c9991ba1a860e6c22e758be68"
+    },
+    {
+      "path": "clipper/align/vad.py",
+      "bytes": 7624,
+      "sha256": "cfb4a1e7ad7a8ea28988213162ab4fa655cb0fe91ec3ff4c6edb976d1fd6e695"
+    },
+    {
+      "path": "clipper/asr/__init__.py",
+      "bytes": 596,
+      "sha256": "280b0242b6458a286f63936fe1c40ba3b791c2ee30230fe1f66eecc018abfdeb"
+    },
+    {
+      "path": "clipper/asr/base.py",
+      "bytes": 3411,
+      "sha256": "fff3fe3c363a87c4e7f9863d98f9c2f3c5190724843499d870be54ee07a98ece"
+    },
+    {
+      "path": "clipper/asr/faster_whisper.py",
+      "bytes": 3147,
+      "sha256": "7b30c9b8bdfe142e2d28564a5aec764884576cc67c14d55b94b06189691ee747"
+    },
+    {
+      "path": "clipper/asr/fixture.py",
+      "bytes": 1961,
+      "sha256": "a3ad643c00565ea40baf9f4984598d0cd2c09fb797cb5aa561a955cd4569ad90"
+    },
+    {
+      "path": "clipper/asr/moonshine.py",
+      "bytes": 9170,
+      "sha256": "ceb6b54fd79f4a93b25e4e5926be271647422b558cdf132c607a50ef85534581"
+    },
+    {
+      "path": "clipper/asr/moonshine_worker.py",
+      "bytes": 1900,
+      "sha256": "d47e588f72de66ef79dc5486c9b7f342682a7567d6ad1e9d5ba01288d827818c"
+    },
+    {
+      "path": "clipper/captions/__init__.py",
+      "bytes": 365,
+      "sha256": "ca645184ed5d1e26abd73ceec3131e9ac0d2740d85b5111ca7daa5f5795fc2d2"
+    },
+    {
+      "path": "clipper/captions/ass.py",
+      "bytes": 8240,
+      "sha256": "d15a5170db3cb209518785032a03748cc51d4dec77d68ba25fc5f9f7280a1830"
+    },
+    {
+      "path": "clipper/captions/block.py",
+      "bytes": 21679,
+      "sha256": "b92ea5b60f7d7346ab91e6c8f7dab7f4e5c0e12388f27fad8a499c4de8a63502"
+    },
+    {
+      "path": "clipper/captions/cover.py",
+      "bytes": 2972,
+      "sha256": "9ad1860338312e0cc634602a57973cbbb135f88b33b5a747ed1c1eb5f4d5cc2f"
+    },
+    {
+      "path": "clipper/captions/cues.py",
+      "bytes": 4768,
+      "sha256": "b9189b09edc7c6a57311e9548b70481ad55842dfa6e3a07fbbae883412cfdbb8"
+    },
+    {
+      "path": "clipper/captions/pipeline.py",
+      "bytes": 18288,
+      "sha256": "788ad6e727b46b02807f9e89bbb4e2422918c0e669976a668160a4bf131ca98e"
+    },
+    {
+      "path": "clipper/captions/remap.py",
+      "bytes": 4825,
+      "sha256": "cdf231ff8f9fe25b50e8566a8ec9596dd357b984902dc173d5ed46f4b05847ea"
+    },
+    {
+      "path": "clipper/captions/render.py",
+      "bytes": 15059,
+      "sha256": "a3ed561863ce0409c3d91c380be8f9a519f0f4a17d83cb328827e75967a47cdf"
+    },
+    {
+      "path": "clipper/captions/tighten.py",
+      "bytes": 4277,
+      "sha256": "0937118802230992b42fc79078ece0d78756d943770a3eb1b3467de5d91fb5b8"
+    },
+    {
+      "path": "clipper/cli.py",
+      "bytes": 38399,
+      "sha256": "64150169afd18a494da1238633465ee32c4f2287aed8cfb1c81fd58c0687d939"
+    },
+    {
+      "path": "clipper/config.py",
+      "bytes": 4974,
+      "sha256": "bdc9baa0bc72acc33bd564b284c4eac6b550f45199059a5028170a3b7d873eab"
+    },
+    {
+      "path": "clipper/edit/__init__.py",
+      "bytes": 531,
+      "sha256": "ba3c8a987dc4b3d54c349f289f162ac761891353b60d8eaa49a39e8345af377f"
+    },
+    {
+      "path": "clipper/edit/pipeline.py",
+      "bytes": 6178,
+      "sha256": "623dbf64ec931c8df5b13c8701950db20596f62c44c771cdae8c0cf3b186735f"
+    },
+    {
+      "path": "clipper/edit/plan.py",
+      "bytes": 17300,
+      "sha256": "9d050160ac7457da4aa061190b7ed9f001003201e6462da171b5c009669fc5a5"
+    },
+    {
+      "path": "clipper/edit/reframe.py",
+      "bytes": 5215,
+      "sha256": "416725c46c1e917f236c88671394f2c7cf05ec105625ad1d30cbc31682169eaf"
+    },
+    {
+      "path": "clipper/edit/render.py",
+      "bytes": 12503,
+      "sha256": "1328b7b0549b7b0ebcd9c0e6c0165bc4a1cc39b21ac6bd45444d6100e3f7c5a6"
+    },
+    {
+      "path": "clipper/edit/sampler.py",
+      "bytes": 9121,
+      "sha256": "9cdd7274bcea74c198bf32577e1f3550cdd44d74c0934d8ad9b7f246cc1c4a0f"
+    },
+    {
+      "path": "clipper/ffmpeg.py",
+      "bytes": 14249,
+      "sha256": "3c87daf10c3965d8d59754950b2c7f0ba11e87b25d7bd83d9aca66b4c6a29513"
+    },
+    {
+      "path": "clipper/guideline.py",
+      "bytes": 9410,
+      "sha256": "65e3f0b843975ab00c6b108aa12f9b414c0d68b4942115de8366fe6cbd784cf6"
+    },
+    {
+      "path": "clipper/ingest/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "clipper/ingest/drop.py",
+      "bytes": 8202,
+      "sha256": "f056b5474282e6cb47a03a36e6ade73f7ded907928bd9acc07798bead719b5ea"
+    },
+    {
+      "path": "clipper/ingest/scan.py",
+      "bytes": 3030,
+      "sha256": "cc02113843575202c12aef76c9c48bcf1941b65996e489b6b4cb105368428777"
+    },
+    {
+      "path": "clipper/samples.py",
+      "bytes": 11041,
+      "sha256": "a96bf6411f89ab16e393719900392a36b0b79f85a4716e6e7479b19ccb6178f2"
+    },
+    {
+      "path": "clipper/select/__init__.py",
+      "bytes": 524,
+      "sha256": "b4acf09d74e3cb758ff11c893487080c56c5978420195c4621f39d9773834c37"
+    },
+    {
+      "path": "clipper/select/beats.py",
+      "bytes": 8366,
+      "sha256": "c3aca8c467eb3d222227c33af137fc9fbe0bdfa55817bc0e2afb181f38091fa2"
+    },
+    {
+      "path": "clipper/select/energy.py",
+      "bytes": 6188,
+      "sha256": "99fee30878a61c2d735d1134f3d10dd610722b9e74b3dd83579fbe4ea30c5f51"
+    },
+    {
+      "path": "clipper/select/hooks.py",
+      "bytes": 4728,
+      "sha256": "22f0198239bd282e8f37939b86708e18b952b4ef573f6e484a44b452881cae5d"
+    },
+    {
+      "path": "clipper/select/pipeline.py",
+      "bytes": 19896,
+      "sha256": "6776faace80a697f66f61d1adc872735618dfebc445265cc81b74efd12bd7ee9"
+    },
+    {
+      "path": "clipper/select/score.py",
+      "bytes": 12090,
+      "sha256": "64558220193fe70e49459312c25f9e4cdd0c10eb5c149fc477fb516f575b24ce"
+    },
+    {
+      "path": "clipper/serve/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "clipper/serve/viewer.py",
+      "bytes": 15654,
+      "sha256": "79af1c905760ed008d208e204a74b989c395bfe411ea825c0c51dce584b12ffa"
+    },
+    {
+      "path": "clipper/style/__init__.py",
+      "bytes": 654,
+      "sha256": "a7591203a30de6588ef657e16d6aa0d07da6dea24c94278d9d0233d4c0eacbd5"
+    },
+    {
+      "path": "clipper/style/audio_style.py",
+      "bytes": 4221,
+      "sha256": "7008ea4d53041cf7dcd5438429e8091c95c359c7d7ae659e03ea63e87523db74"
+    },
+    {
+      "path": "clipper/style/captions_detect.py",
+      "bytes": 53243,
+      "sha256": "8bc52da7e8945ce22781cb0d4512a1ab4411ff8dfe905a34b9601421b9ccb860"
+    },
+    {
+      "path": "clipper/style/extract.py",
+      "bytes": 12750,
+      "sha256": "04554afb32dc9489ac3ce6d0f0c39fc227c9a9a79b3796edab9d965ee2971105"
+    },
+    {
+      "path": "clipper/style/frames.py",
+      "bytes": 1508,
+      "sha256": "f7387e985a42fedd6d205bd04a2af7b645c96a029d21a12c7ac6099c4ba120d2"
+    },
+    {
+      "path": "clipper/style/profile.py",
+      "bytes": 3784,
+      "sha256": "2bda6fd738043d2f53bfcf47cd3c96941505f09efcf9b373bd252dce354bd895"
+    },
+    {
+      "path": "clipper/style/shots.py",
+      "bytes": 4869,
+      "sha256": "86ad558c651446852701d1865d9b97841fa3ed0fdfd158040763282ba6acd9f7"
+    },
+    {
+      "path": "clipper/style/zoom.py",
+      "bytes": 7596,
+      "sha256": "c77de178aa4206e25fbf57fe66edf4ec5e2d5c4e752ea3fb6659e158054b476a"
+    },
+    {
+      "path": "clipper/synth.py",
+      "bytes": 10174,
+      "sha256": "5f09c13523976e22f4685ca4d88788cb714bf2555b30309279f334283f8b2daa"
+    },
+    {
+      "path": "clipper/util/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "clipper/util/jsonio.py",
+      "bytes": 899,
+      "sha256": "62c24f8e0438e897f6918cddd81d603c2827ebe9e8a1d40f178a52702300584b"
+    },
+    {
+      "path": "clipper/util/log.py",
+      "bytes": 1711,
+      "sha256": "4677f525a54f51ab1a6ff6a88b2580bfbfb6cbaaec3395bfd00db6811d016df6"
+    },
+    {
+      "path": "clipper/util/timecode.py",
+      "bytes": 1091,
+      "sha256": "aa344088449b6778ff6d482398fae806e1cc3c48223a23c7df342cde5c28ee40"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+# Deps for `render.py` - re-make captions and render the film from the saved
+# transcript. Reproduces the committed captions, words.json and style.json
+# byte for byte. The imageio-ffmpeg wheel ships the ffmpeg binary that does the
+# render (built with libass + freetype, which burns the captions in).
+imageio-ffmpeg==0.6.0
+pillow==12.3.0
+numpy==2.4.6
+
+# Deps for `prepare.py` only - re-run Moonshine ASR to make a new transcript.
+# clipper/asr/moonshine.py also imports onnxruntime and silero-vad (VAD
+# chunking), which moonshine-cpp does not pull in itself. Heavy; skip it unless
+# you are regenerating transcript-asr.json.
+# moonshine-cpp==0.1.4
+# onnxruntime>=1.17
+# silero-vad>=5.1

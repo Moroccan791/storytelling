@@ -5,3 +5,6 @@ __pycache__/
 work/
 *.log
 .DS_Store
+
+# Generated motion clips (regenerate with: python motion/build_clips.py)
+post1/clips/
