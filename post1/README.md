@@ -23,7 +23,9 @@ See [post.md](post.md) for the title, short description, hashtags, and ready-to-
 
 One thing the pipeline references is not committed here:
 
-- `images/` — the six source scene illustrations (`01-call`, `02-phone`, `03-recording`, `04-door`, `05-table`, `06-stay`). The finished MP4 is unaffected, but `render.py` needs them to re-render and will now exit with a clear message instead of a traceback. They are not present in `Moroccan791/system` either, so they only exist locally.
+- `images/` — the six original scene illustrations (`01-call`, `02-phone`, `03-recording`, `04-door`, `05-table`, `06-stay`). The finished MP4 is unaffected, but `render.py` needs them to re-render and will now exit with a clear message instead of a traceback. They are not present in `Moroccan791/system` either, so they only exist on the machine that made this post.
+
+  **Recovered:** all six are reproduced in [`../motion/src/`](../motion/src) by `motion/extract_stills.py`, which pulls caption-free frames out of the finished film. Good enough to animate or to feed an image-to-video model; the originals remain the master if you can still find them.
 
 The caption pipeline is committed: `tools/` at the repository root holds the `clipper/` subset and Montserrat fonts, pinned in `tools/SOURCE.json`. See [`tools/README.md`](../tools/README.md).
 
@@ -64,6 +66,19 @@ python render.py
 `render.py` reads `narration.mp3` and `transcript-asr.json` and writes `words.json`, `captions.ass`, `captions.json`, `style.json`, `project.json`, `the-last-call.mp4` and `preview.jpg`. Re-running the caption stage against the committed transcript reproduces `words.json`, `captions.ass`, `captions.json` and `style.json` byte for byte.
 
 It still needs `images/` for the picture, which is not in this repository.
+
+## Animated version
+
+`render.py` moves a still. [`render_video.py`](render_video.py) assembles real moving clips instead — same shot plan, same captions, same narration:
+
+```bash
+python ../motion/build_clips.py            # animate all six illustrations (CPU, ~3 min)
+python render_video.py --clips-dir clips   # build the film (~2 min 48 s)
+```
+
+It matches clips to the shot plan by name (`01-call.mp4` covers every framing that uses `01-call`), trims or retimes each to fit its slot, and falls back to the still for any shot with no clip, so a half-generated episode still renders. Clips can come from anywhere — the CPU renderer here, a free Colab image-to-video model, or a paid API. See [`docs/ANIMATION.md`](../docs/ANIMATION.md).
+
+`work/` and `clips/` are generated and not committed.
 
 ## Watch locally
 

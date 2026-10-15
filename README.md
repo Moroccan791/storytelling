@@ -12,7 +12,8 @@ Standalone storytelling shorts. Each post lives in its own numbered folder with 
 
 ```
 tools/                       shared, read-only caption pipeline (vendored, pinned)
-motion/                      CPU motion renderer for animating stills
+motion/                      CPU motion renderer + recovered source stills
+docs/                        animation options, costs and limits
 post1/
 ├── README.md                project notes for this post
 ├── the-last-call.mp4        final cut (H.264 + AAC, 1080×1920, 30 fps)
@@ -38,9 +39,13 @@ The caption pipeline (`tools/clipper/` plus the Montserrat fonts in `tools/asset
 
 Fixes to it belong upstream in `Moroccan791/system`, not here — re-vendor from `tools/SOURCE.json` afterwards.
 
-## Animated shots
+## Animated episodes
 
-`motion/` turns one illustration into a moving shot — eased camera, practical-light flicker, drifting dust, 2.5D parallax — on CPU, no GPU or paid model. It moves the camera and the light only; it cannot invent artwork or animate a character. See [`motion/README.md`](motion/README.md) for the comparison video and the limits.
+`motion/` turns illustrations into moving shots — eased camera, practical-light flicker, drifting dust, 2.5D depth parallax — on CPU, no GPU and no paid model. `post1/render_video.py` cuts those clips (or clips from any image-to-video model) onto the shot plan and burns in the same captions and narration.
+
+Measured on 2 CPU cores: **~6 minutes** for a full 53-second episode, start to finish.
+
+It moves the camera and the light only — it cannot invent artwork or animate a character's face. [`docs/ANIMATION.md`](docs/ANIMATION.md) sets out what the target machine can and cannot run, the free Colab route for real generative motion, and current per-episode costs. [`motion/README.md`](motion/README.md) has the comparison video.
 
 ## Watching a post locally
 

@@ -20,16 +20,31 @@ Individual clips: [`example-living.mp4`](example-living.mp4) · [`example-parall
 
 ```bash
 pip install numpy opencv-python-headless imageio-ffmpeg
+
+# one clip at a time
 python motion/motion.py SOURCE.png OUT.mp4 living          # or: parallax | comparison
 python motion/motion.py SOURCE.png OUT.mp4 living 8        # optional duration, default 6s
+
+# or animate a whole post from its shot plan
+python motion/build_clips.py                    # writes post1/clips/*.mp4
+cd post1 && python render_video.py --clips-dir clips
 ```
 
-Source images must be 1080×1920. If you still have `post1/images/`, use those. Otherwise extract a clean frame from the finished film — these shots have no captions burned in while the camera is still:
+`build_clips.py` renders one clip per illustration, long enough for the longest shot that uses it. `render_video.py` then cuts those clips onto the shot plan, trims or retimes them to fit, and burns in the same captions and narration as `render.py`.
+
+Measured on 2 CPU cores: **3 min** to animate all six illustrations, **2 min 48 s** to assemble the 53-second film.
+
+## Where the source stills come from
+
+`motion/src/` holds all six illustrations at 1080×1920, committed here. They were **recovered from the finished film** by `extract_stills.py`, because the original `post1/images/` files were never committed and only existed on one machine:
 
 ```bash
-FF=$(python -c "import imageio_ffmpeg;print(imageio_ffmpeg.get_ffmpeg_exe())")
-$FF -ss 0.6 -i post1/the-last-call.mp4 -frames:v 1 01-call.png
+python motion/extract_stills.py          # finds a caption-free frame per illustration
 ```
+
+The script reads `captions.json` to find moments where no caption is on screen (captions cover roughly two thirds of the runtime, so every illustration has a clean window) and pulls a frame from the middle of the widest one.
+
+These are decoded from the finished H.264, so they are a slightly compressed, already-framed version of the originals — good enough to animate or to feed an image-to-video model, but if you still have `post1/images/` on the original machine, keep those as the master. They must be 1080×1920.
 
 ## What it actually does
 
@@ -51,12 +66,13 @@ Cost: roughly **6 seconds of shot per 35 seconds of CPU** on 2 cores at 1080×19
 
 ## If you want true generative motion
 
-Check what your own machine has — this sandbox has no GPU and cannot reach those APIs:
+**This sandbox has no GPU, and neither does the target machine** — an i3 Asus X515JA. So generative video is not a local option; the models want 8–16 GB of VRAM and would take an hour or more per second of video on a CPU.
 
-| Route | Runs where | Notes |
+Two routes work around that, both covered in detail — with measured times, current prices and free tiers — in [`docs/ANIMATION.md`](../docs/ANIMATION.md):
+
+| Route | Runs where | Cost |
 | --- | --- | --- |
-| **Local image-to-video** — LTX-Video, CogVideoX, Wan 2.1/2.2 | Your GPU | Open weights, free, image-to-video. Best current value if you have the VRAM. |
-| **Hosted APIs** — Kling, Runway, Luma, Pika, Veo, Sora | Anywhere | Paid per clip, strongest quality, easiest to scale to a whole episode. |
-| **Anything you pick** | — | Feed it the illustration + a motion prompt per shot, then cut the results with this pipeline's existing caption and shot-assembly code. |
+| **Free Colab T4** — LTX-Video (6–8 min/clip) or Wan 2.2 GGUF (12–25 min/clip) | Google's GPU, in your browser | Free |
+| **Hosted APIs** — Kling, Veo, Luma, Runway | Anywhere | ~$2.65–6.70 per episode, one take per shot |
 
-The captions, timing and assembly in `post1/` do not care how a shot was produced, so a generated clip can drop straight into the place of a still.
+`post1/render_video.py` takes clips from any of them: drop `<name>.mp4` into `post1/clips/` and run it. It handles the trims, retimes and fallbacks, and the captions, timing and audio are identical to the original render — so you can mix a paid close-up with free CPU motion for the rest.
